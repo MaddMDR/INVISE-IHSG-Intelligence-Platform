@@ -153,7 +153,7 @@ Kami menyambut kontribusi! Silakan fork repositori ini dan ajukan *pull request*
 
 ## 📄 License
 
-This project is licensed under the [MIT License](./LICENSE.md).
+This project is licensed under the [MIT License](./LICENSE).
 ---
 
 ## 🙏 Acknowledgments
