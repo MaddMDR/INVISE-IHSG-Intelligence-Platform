@@ -1,11 +1,12 @@
 # INVISE: IHSG Navigation & Visual Intelligence System Engine
 
+![MIT License](https://img.shields.io/badge/license-MIT-green)
 ![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue)
-
 
 **INVISE** adalah sistem peramalan hibrida canggih yang dirancang untuk memberikan analisis waktu nyata dan wawasan prediktif terhadap Indeks Harga Saham Gabungan (IHSG). Sistem ini menggabungkan model machine learning kuantitatif dengan kemampuan penalaran dari Large Language Models (LLMs) untuk menjembatani data mentah dengan pengambilan keputusan strategis.
 
 > Dikembangkan oleh **Tim Golden Delta** dari **Universitas Sanata Dharma** sebagai bagian dari kompetisi Datathon 2025 oleh RISTEK, Fakultas Ilmu Komputer, Universitas Indonesia.
+
 ---
 
 ## 🚀 Application Preview
@@ -81,7 +82,7 @@ cd INVISE-IHSG-Intelligence-Platform
 
 # Buat dan aktifkan virtual environment
 python -m venv venv
-source venv/bin/activate   # Untuk Windows: `venv\Scripts\activate`
+source venv/bin/activate   # Untuk Windows: venv\Scripts\activate
 
 # Instal semua dependensi
 pip install -r requirements.txt
@@ -148,6 +149,11 @@ INVISE-IHSG-Intelligence-Platform/
 
 Kami menyambut kontribusi! Silakan fork repositori ini dan ajukan *pull request*. Untuk ide besar, buat *issue* terlebih dahulu agar bisa didiskusikan bersama.
 
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](./LICENSE.md).
 ---
 
 ## 🙏 Acknowledgments
