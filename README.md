@@ -151,12 +151,6 @@ Kami menyambut kontribusi! Silakan fork repositori ini dan ajukan *pull request*
 
 ---
 
-## 📜 License
-
-Proyek ini dilisensikan di bawah [Lisensi MIT](LICENSE).
-
----
-
 ## 🙏 Acknowledgments
 
 Dibuat dengan ❤️ oleh **Tim Golden Delta**, Universitas Sanata Dharma.  
