@@ -1,18 +1,21 @@
 # INVISE: IHSG Navigation & Visual Intelligence System Engine
 
+![MIT License](https://img.shields.io/badge/license-MIT-green)
+![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue)
+
+
 **INVISE** adalah sistem peramalan hibrida canggih yang dirancang untuk memberikan analisis waktu nyata dan wawasan prediktif terhadap Indeks Harga Saham Gabungan (IHSG). Sistem ini menggabungkan model machine learning kuantitatif dengan kemampuan penalaran dari Large Language Models (LLMs) untuk menjembatani data mentah dengan pengambilan keputusan strategis.
 
 > Dikembangkan oleh **Tim Golden Delta** dari **Universitas Sanata Dharma** sebagai bagian dari kompetisi Datathon 2025 oleh RISTEK, Fakultas Ilmu Komputer, Universitas Indonesia.
-r
 ---
 
-## 🚀 Pratinjau Aplikasi
+## 🚀 Application Preview
 
-*\[Tempat untuk GIF atau tangkapan layar aplikasi]*
+![Pratinjau Aplikasi](./invise.png)
 
 ---
 
-## ✨ Fitur Utama
+## ✨ Main Features
 
 - **Dashboard Prediksi Dinamis**  
   Visualisasi prediksi harga IHSG untuk beberapa hari ke depan, lengkap dengan arah pergerakan, estimasi persentase perubahan, dan tingkat kepercayaan model.
@@ -27,14 +30,16 @@ r
   Interaksi langsung dengan asisten AI untuk menanyakan hal-hal spesifik terkait data, prediksi, atau istilah pasar. Dilengkapi fitur transparansi yang menampilkan "proses berpikir" AI.
 
 - **Visualisasi Data Komprehensif**  
-  Jelajahi data historis melalui grafik candlestick interaktif, visualisasi backtesting model, dan heatmap korelasi.
+  Jelajahi data historis melalui grafik candlestick interaktif, visualisasi backtesting model, dan korelasi aset pada pelatihan model.
 
 - **Alur Kerja Terpandu**  
   Antarmuka yang ramah pengguna memandu proses mulai dari memuat data, melatih model, hingga menghasilkan prediksi.
 
+> ⚠️ Fitur yang menggunakan AI hanya tersedia di versi lokal karena keterbatasan hosting model Ollama.
+
 ---
 
-## 🏗️ Arsitektur Sistem
+## 🏗️ System Architecture
 
 INVISE dibangun dengan arsitektur modular tiga lapis:
 
@@ -50,7 +55,7 @@ Menarik data time-series finansial terkini langsung dari Yahoo Finance.
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
+## 🛠️ Technology Stack
 
 - **Backend & Analisis Data**: Python 3.10  
 - **Framework Web & Dashboard**: Streamlit  
@@ -62,7 +67,7 @@ Menarik data time-series finansial terkini langsung dari Yahoo Finance.
 
 ---
 
-## ⚙️ Instalasi & Penggunaan
+## ⚙️ Installation & Usage
 
 ### 1. Prasyarat
 - Python versi 3.10 atau lebih baru
@@ -72,8 +77,8 @@ Menarik data time-series finansial terkini langsung dari Yahoo Finance.
 
 ```bash
 # Kloning repositori
-git clone https://github.com/username/invise-project.git
-cd invise-project
+git clone https://github.com/MaddMDR/INVISE-IHSG-Intelligence-Platform.git
+cd INVISE-IHSG-Intelligence-Platform
 
 # Buat dan aktifkan virtual environment
 python -m venv venv
@@ -85,7 +90,7 @@ pip install -r requirements.txt
 
 ### 3. Setup Model LLM
 
-Setelah Ollama terinstal, unduh model LLM:
+Setelah Ollama terinstal, buka PowerShell (atau terminal) dan jalankan perintah berikut untuk mengunduh model LLM yang diperlukan:
 
 ```bash
 # Contoh menggunakan qwen2.5vl
@@ -94,7 +99,9 @@ ollama pull qwen2.5vl
 
 > Anda bisa mengganti `qwen2.5vl` dengan model lain seperti `llama3` atau `mistral`.
 
-### 4. Menjalankan Aplikasi
+### 4. Running the application
+
+Setelah semua dependensi terinstal dan model LLM dari Ollama sudah tersedia, jalankan aplikasi Streamlit dengan perintah berikut:
 
 ```bash
 streamlit run app.py
@@ -104,10 +111,10 @@ Lalu buka browser Anda dan kunjungi: [http://localhost:8501](http://localhost:85
 
 ---
 
-## 🗂️ Struktur Folder Proyek
+## 🗂️ Project Folder Structure
 
 ```
-invise-project/
+INVISE-IHSG-Intelligence-Platform/
 ├── app.py               # File utama aplikasi Streamlit
 ├── ollama_chat.py       # Kelas untuk interaksi dengan Ollama
 ├── ihsg_platform.py     # Pipeline data & model ML
@@ -119,7 +126,7 @@ invise-project/
 
 ---
 
-## 📖 Cara Menggunakan
+## 📖 How-to use
 
 1. **Muat Data Pasar**  
    Klik tombol "1. Load Market Data" di sidebar untuk mengambil data pasar terbaru.
@@ -138,19 +145,19 @@ invise-project/
 
 ---
 
-## 🤝 Kontribusi
+## 🤝 Contribution
 
 Kami menyambut kontribusi! Silakan fork repositori ini dan ajukan *pull request*. Untuk ide besar, buat *issue* terlebih dahulu agar bisa didiskusikan bersama.
 
 ---
 
-## 📜 Lisensi
+## 📜 License
 
 Proyek ini dilisensikan di bawah [Lisensi MIT](LICENSE).
 
 ---
 
-## 🙏 Ucapan Terima Kasih
+## 🙏 Acknowledgments
 
 Dibuat dengan ❤️ oleh **Tim Golden Delta**, Universitas Sanata Dharma.  
 Terima kasih kepada komunitas open-source atas pustaka dan alat luar biasa yang memungkinkan proyek ini terwujud.
