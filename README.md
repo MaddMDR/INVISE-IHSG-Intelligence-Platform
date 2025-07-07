@@ -152,5 +152,4 @@ Kami menyambut kontribusi! Silakan fork repositori ini dan ajukan *pull request*
 
 ## 🙏 Acknowledgments
 
-Dibuat dengan ❤️ oleh **Tim Golden Delta**, Universitas Sanata Dharma.  
 Terima kasih kepada komunitas open-source atas pustaka dan alat luar biasa yang memungkinkan proyek ini terwujud.
