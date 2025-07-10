@@ -109,7 +109,6 @@ class IHSGIntelligencePlatform:
     def calculate_market_correlations(self):
         """
         Menghitung korelasi pasar.
-        Versi final: Mengisi data libur lalu memfilter hanya pada hari perdagangan IHSG.
         """
         st.info(f"🔍 Menghitung korelasi pasar untuk horizon {self.prediction_horizon} hari...")
         horizon = self.prediction_horizon
@@ -212,7 +211,6 @@ class IHSGIntelligencePlatform:
         
         # Untuk rolling forecast, kita selalu prediksi 1 hari ke depan
         features = features.shift(1) 
-        # Targetnya adalah harga hari ini, berdasarkan fitur hari kemarin
         target = self.data['IHSG']['Close'] 
         
         combined_df = pd.concat([features, target.rename('target')], axis=1)
@@ -304,31 +302,23 @@ class IHSGIntelligencePlatform:
         st.info(f"🔮 Memulai peramalan bertingkat untuk {self.prediction_horizon} hari ke depan...")
 
         try:
-            # 1. Siapkan histori sementara untuk SEMUA aset, agar bisa di-update
             temp_histories = {name: data.copy() for name, data in self.data.items()}
             
             future_predictions = []
             final_individual_predictions = {}
             
-            # 2. Lakukan perulangan peramalan sebanyak horizon
             for day in range(self.prediction_horizon):
                 last_date = temp_histories['IHSG'].index[-1]
                 next_date = last_date + pd.tseries.offsets.BusinessDay(1)
-                
-                # --- A. BUAT FITUR DINAMIS UNTUK HARI INI ---
-                # A.1. Fitur dari IHSG (berdasarkan histori terakhirnya)
                 ihsg_features = self.calculate_technical_indicators(temp_histories['IHSG']).add_prefix('ihsg_')
-                
-                # A.2. Fitur dari Aset Eksternal (berdasarkan histori terakhir MEREKA)
                 external_features = {}
                 for asset_name, asset_df in temp_histories.items():
                     if asset_name == 'IHSG':
                         continue
                     # Buat fitur return untuk aset eksternal
                     for lag in [1, 3, 5, 7]:
-                        # pct_change() secara alami akan menangani histori yang diperbarui
                         feature_name = f'{asset_name.lower()}_return_{lag}'
-                        if feature_name in self.X_columns: # Hanya buat fitur yg digunakan model
+                        if feature_name in self.X_columns:
                              external_features[feature_name] = asset_df['Close'].pct_change(lag).iloc[-1]
                 
                 # Gabungkan semua fitur
@@ -345,7 +335,6 @@ class IHSGIntelligencePlatform:
                 # Pastikan urutan kolom sesuai dengan saat training
                 latest_features = latest_features.reindex(columns=self.X_columns).fillna(method='ffill')
 
-                # --- B. LAKUKAN PREDIKSI IHSG ---
                 features_scaled = self.scaler.transform(latest_features)
                 predictions_raw = {name: model.predict(features_scaled)[0] for name, model in self.models.items()}
                 next_ihsg_price = np.mean(list(predictions_raw.values()))
@@ -355,15 +344,11 @@ class IHSGIntelligencePlatform:
                 if day == self.prediction_horizon - 1:
                     final_individual_predictions = predictions_raw
 
-                # --- C. UPDATE HISTORI (PROSES ROLLING) ---
-                # C.1. Update histori IHSG dengan harga prediksinya
                 new_ihsg_row = pd.DataFrame(
                     {'Open': next_ihsg_price, 'High': next_ihsg_price, 'Low': next_ihsg_price, 'Close': next_ihsg_price, 'Volume': temp_histories['IHSG']['Volume'].iloc[-1]},
                     index=[next_date]
                 )
                 temp_histories['IHSG'] = pd.concat([temp_histories['IHSG'], new_ihsg_row])
-
-                # C.2. Update histori ASET EKSTERNAL dengan prediksi sederhana mereka
                 for asset_name, asset_df in temp_histories.items():
                     if asset_name == 'IHSG':
                         continue
@@ -375,7 +360,6 @@ class IHSGIntelligencePlatform:
                     )
                     temp_histories[asset_name] = pd.concat([asset_df, new_external_row])
 
-            # 3. Format hasil akhir (sama seperti sebelumnya)
             current_price = self.data['IHSG']['Close'].iloc[-1]
             final_prediction = future_predictions[-1]
             price_change = final_prediction['price'] - current_price
