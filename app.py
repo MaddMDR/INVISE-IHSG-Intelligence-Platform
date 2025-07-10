@@ -6,16 +6,6 @@ from chart_utils import ChartUtils
 from ollama_chat import OllamaChat
 from css import load_css
 
-# Konfigurasi halaman
-st.set_page_config(
-    page_title="INVISE - IHSG Navigation & Visual Intelligence System Engine",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
-
-# Muat CSS kustom
-st.markdown(load_css(), unsafe_allow_html=True)
-
 def init_session_state():
     """Initialize all necessary session state variables."""
     if 'platform' not in st.session_state:
@@ -255,7 +245,7 @@ def generate_analysis_streaming(language):
         placeholder.error(f"Gagal menghasilkan analisis: {e}")
 
 
-# Revised tab content for AI Intelligence - FIXED VERSION
+# Revised tab content for AI Intelligence
 def display_ai_intelligence_tab():
     """Display the AI Intelligence tab content without duplication."""
     st.markdown("## 🧠 INVISE AI Intelligence")
@@ -291,7 +281,6 @@ def display_ai_intelligence_tab():
         if st.session_state.analysis_indonesian or st.session_state.analysis_english:
             st.markdown("---")
 
-# Updated main function with the revised tab content
 def main():
     """Main function to run the Streamlit app."""
     st.set_page_config(
@@ -367,7 +356,7 @@ def main():
                 with st.chat_message("user", avatar="🧑‍💻"):
                     st.markdown(prompt)
                 
-                # Hasilkan dan tampilkan respons dari AI
+                # Hasilkan dan tampilkan respons dari INVISE AI
                 with st.chat_message("assistant", avatar="🤖"):
                     with st.spinner("INVISE AI sedang berpikir..."):
                         context = ""
